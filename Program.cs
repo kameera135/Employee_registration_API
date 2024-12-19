@@ -1,9 +1,26 @@
 using EmployeeRegistration.Interfaces;
 using EmployeeRegistration.Models;
 using EmployeeRegistration.Repositories;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
+
+//For JWT creation
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
+    {
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = false,
+            ValidateAudience = false,
+            ValidateLifetime = true,
+            ValidateIssuerSigningKey = true,
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
+        };
+    });
 
 // Add services to the container.
 builder.Services.AddDbContextFactory<EmployeeContext>(opts =>
@@ -11,6 +28,7 @@ builder.Services.AddDbContextFactory<EmployeeContext>(opts =>
 
 //Dipendancy Injection
 builder.Services.AddScoped<IEmployee, EmployeeRepository>();
+builder.Services.AddScoped<IAuth, AuthRepository>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

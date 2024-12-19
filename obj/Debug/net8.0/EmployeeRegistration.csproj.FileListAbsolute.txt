@@ -167,3 +167,4 @@ D:\programs\C#\EmployeeRegistration\obj\Debug\net8.0\EmployeeRegistration.pdb
 D:\programs\C#\EmployeeRegistration\obj\Debug\net8.0\EmployeeRegistration.genruntimeconfig.cache
 D:\programs\C#\EmployeeRegistration\obj\Debug\net8.0\ref\EmployeeRegistration.dll
 D:\programs\C#\EmployeeRegistration\obj\Debug\net8.0\EmployeeRegistration.sourcelink.json
+D:\programs\C#\EmployeeRegistration\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
